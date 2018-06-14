@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>Assignment 9 - Superheroes</title>
+
+
+<script>
+
+
+txtsize=0;
+maxsize=32;
+
+var timergrow;
+var timer;
+
+//Grow text
+//Execute function writeMsg() once after a delay of 50 milliseconds
+//text grows from 0 pixels to 24 pixels
+
+function writeMsg()
+{
+if (txtsize<maxsize)
+	{
+	document.getElementById('pic').style.fontSize=txtsize+"px"
+	txtsize++
+	timer=setTimeout("writeMsg()",50)
+	}
+}
+
+
+//Grow image
+//Execute function steveGrow() in 30 millisecond intervals, 
+//until width=145 and height=180
+//document.getElementById('pic').width++ means get the element whose
+//id is pic and increment it's width until it is 145 pixels 
+
+
+function steveGrow(){
+   timergrow = setInterval("grow()",30);
+  }
+
+  function grow() {
+   if ( document.getElementById('pic').width < 145)
+    document.getElementById('pic').width++;
+   if (document.getElementById('pic').height < 180)
+   document.getElementById('pic').height++;
+  }
+
+
+//stop timers after page finishes loading
+
+function stopTimer()
+{
+clearTimeout(timer)
+}
+
+function stopInt()
+{
+clearInterval(timergrow)
+}
+
+//Question
+
+function MsgBox2(textstring)  {
+
+
+if (textstring == "joker" || textstring == "JOKER")
+  {
+  alert ("Joker is Batman's nemisis!");
+  }
+
+  else 
+  {
+  alert ("That is incorrect!");
+  }
+
+     }
+
+
+//<!-- Mouseover on gorillas  -->
+
+
+function mouseOver1()
+{
+document.getElementById("gor1").src ="clark.jpg"
+}
+
+
+function mouseOut1()
+{
+document.getElementById("gor1").src ="superman.jpg"
+}
+
+//<!-- drop-down menu script -->
+
+ function surfto(form) {
+        var myindex=form.dest.selectedIndex
+        location=form.dest.options[myindex].value;
+}
+
+
+//<!-- script to create Pop up window for warning Message -->
+
+function new_window(url)  {
+
+link = 
+window.open(url,
+'_new', 'toolbar=0,menubar=0,scrollbars=0,status=0,resizable=0,top=1,left=415,fullscreen=0,Height=400px,Width=450px', '')
+}
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script>
+//Flash fade
+$(document).ready(function(){
+  $("button").click(function(){
+    $("#flash").fadeTo("slow",0.25);
+  });
+});
+
+</script>
+
+
+
+<style>
+
+
+
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  width:900px;
+  margin: 0px auto;
+}
+
+h1 {
+	text-align: center;
+	font-family: Bangers;
+	src: url(Bangers.ttf);
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#switch {
+  position: absolute;
+  top: 105px;
+  left: 45%;
+  width: 300px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#checker {
+  position: absolute;
+	text-align: center;
+  top: 450px;
+  left: 42%;
+}
+
+#nemisis {
+  position: absolute;
+  text-align: center;
+  top: 400px;
+  left:44%;
+  font-family: Bangers;
+	src: url(Bangers.ttf);
+}
+
+.content1 {
+  position: absolute;
+  text-align: center;
+  top: 105px;
+  left: 70%;
+}
+
+#form {
+  position: absolute;
+  text-align: center;
+  top: 310px;
+  left: 43%;
+}
+
+.x {
+	text-decoration: none;
+	font-family: Bangers;
+	src: url(Bangers.ttf);
+}
+
+
+
+</style>
+
+
+</head>
+
+<!-- the sripts are called as the page loads and after loading, I stop the timers -->
+
+<body onload="writeMsg(); steveGrow();" onunload="stopTimer(); stopInt();">
+
+
+<section>
+
+<h1><span id="msg">Superheroes</span></h1>
+
+
+<!-- I start the image as a tiny speck with width and height equal to 1 -->
+
+<img id="pic"  src="batman.jpg" alt="Batman"  width="1" height="1" > 
+<br><br><br>
+
+<!-- Simple alert of a message -->
+<div id='know'>
+<a id="alrt"></a>
+<a  class="x" href="#alrt" onclick="alert('Batman is DC!')">Did you know??</a>
+</div>
+
+
+<!-- 1st Message box, button and alert -->
+
+
+<form name="myForm1"><div id='nemisis'>Who is Batman's nemisis?<br><input name="text2" type="text" size="8">
+
+
+<input name="submit" type="button" value="Click" 
+onclick="MsgBox2(document.forms['myForm1'].elements['text2'].value)">
+
+</form>
+</div>
+
+
+<!-- drop-down menu -->
+<div id='form'>
+<form name="myform">
+
+
+  <select name="dest">
+    
+    <option selected="selected" value="h9x.html">---Pick a Superhero---</option>
+    <option value="http://marvel.com/characters/54/spider-man">Spiderman</option>
+    <option value="http://marvel.com/characters/25/hulk">Hulk</option>
+    <option value="http://marvel.com/characters/29/iron_man">Iron Man</option>  
+
+  </select>
+
+<input type="button" value="Go!" onclick="surfto(this.form)" />
+
+</form>
+</div>
+
+<!-- mouseover gorilla images changes images -->
+
+<div id='switch'>
+<a href="http://en.wikipedia.org/wiki/Gorilla" onmouseover="mouseOver1()" onmouseout="mouseOut1()"><img src="superman.jpg" 
+id="gor1" width="94" height="157"  alt="please don't click me - it hurts!"></a>
+</div>
+
+<br>
+
+<!-- Pop-up Window for Warning Message -->
+
+
+<a class="x" href="#" onclick="new_window('popup.htm');" title="click for warning message">Superhero Pop-up Quotes</a>
+
+
+<br><br>
+
+<a class="x" href="pass.html" title="click">Superhero Secret Vault</a>
+
+<br><br>
+
+<div class="content1">
+
+<!-- button using jquery for fading the Steve image -->
+
+<img class="img1" src="flash.jpg" id="flash" alt="Flash to fade" width="145" height="180"><br><br>
+
+<button class="flashbut" type="button">Click to fade Flash</button>
+
+</div>
+
+<br> 
+
+<p id='checker'>
+<a href="https://validator.w3.org/check?uri=referer">
+<img style="border:0;width:88px;height:31px" src="HTML5.gif"
+alt="HTML5"></a>
+
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="w3.gif"
+            alt="Valid CSS!"></a>
+</p>
+  
+
+
+</section>
+
+</body>
+</html>

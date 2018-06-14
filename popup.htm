@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
+
+<head>
+
+<title>Superhero Popup Quotes</title>
+
+<style type="text/css">
+
+a:hover {background-color: yellow;}
+
+p {
+	font-family: Bangers;
+	src: url(Bangers.ttf);
+}
+
+</style>
+
+
+
+<!-- Script that makes buttons grow -->
+
+<script type="text/javascript"> 
+/* <![CDATA[ */
+
+
+var objGrow;
+var timerGrow;
+var objShrink = new Object();
+
+function mouseover(image) {
+	// If this image is currently shrinking, stop it.
+	imageId = image.id;
+	if (objShrink[imageId] != null) {
+		clearInterval(objShrink[imageId]);
+	}
+	
+	// Only one image can grow at a time, so I can use a single global variable
+	// to store the image object that's growing.
+	// Schedule the grow function to be called repeatedly on that image.
+	// (I can't seem to pass "grow(image)" to the setInterval method -- I presume
+	// because image is undefined on subsequent invokations. Instead I have to pass
+	// a variable with global scope.)
+	objGrow = image;
+	timerGrow = setInterval("grow(objGrow)", 50);
+} 
+
+function grow(image) {
+	if (image.width < 100 && image.height < 100) {
+		image.width++;
+		image.height++;	
+	} else {
+		clearInterval(timerGrow);
+	}
+}
+
+function mouseout(image) {
+	// Stop growing
+	clearInterval(timerGrow);
+	
+	// Many objects can be shrinking simultaneously, so I need to keep track of
+	// several shrinking images and their timers. To do this, the objShrink object
+	// is used as an associative array with the following format:
+	//
+	//    objShrink["imageId"] = the timer object for the shrinking image
+	//
+	// I'm passing the specific image id to the shrink method, so that it knows which
+	// specific image to shrink.
+	objShrink[image.id] = setInterval("shrink('" + image.id + "')", 50);
+}
+
+function shrink(imageId) {
+	var image = document.getElementById(imageId);
+	if (image.width > 50 && image.height > 50) { 
+		image.width--; 
+		image.height--; 
+	} else {
+		clearInterval(objShrink[image.id]);
+		objShrink[image.id] = null;
+	}
+} 
+
+/*]]>*/
+</script> 
+
+</head>
+
+<body  bgcolor="#deb887"  background="pinkdotbg.jpg" text="#000000" link="blue" vlink="blue" alink="#ffffff">
+
+
+<p>The strength of this country isn't in buildings of brick and steel. It's in the hearts of those who have sworn to fight for its freedom... -Captain America</p>
+<p>...When you decide not to be afraid, you can find friends in super unexpected places. -Ms. Marvel</p>
+<p>You're much stronger than you think you are. Trust me. -Superman</p>
+<p>If there is nothing but what we make in this world, brothers...let us make it good. -Beta Ray Bill</p>
+<p>The door is more than it appears. It separates who you are from who you can be. You do not have to walk through it... You can run. -Franklin Richards (of the Fantastic Four)</p>
+<p>The future is worth it. All the pain. All the tears. The future is worth the fight. -Martian Manhunter</p>
+<p>You're going to make a difference. A lot of times it won't be huge, it won't be visible even. But it will matter just the same. -Commissioner James Gordon</p>
+<p>...In a world of ordinary mortals, you are a wonder woman. -Queen Hippolyta(Wonder Woman's Mom)</p>
+<p>You only have your thoughts and dreams ahead of you. You are someone. You mean something. -Batman</p>
+<p>With great power comes great responsibility. -Uncle Ben</p>
+
+
+<div align="center">
+<form>
+
+
+<input type="button" value="Close Window" onclick="window.close()" />
+
+ <p class="val">
+
+    <a href="https://validator.w3.org/check?uri=referer"><img
+        src="HTML5.gif" 
+        alt="Valid HTML5" height="31" width="88"></a>
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="w3.gif"
+            alt="Valid CSS!"></a>
+  </p>
+
+</form>
+
+</div>
+</body>
+</html>
